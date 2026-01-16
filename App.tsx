@@ -259,17 +259,14 @@ export default function App() {
   }
 
   // Responsive Grid Class Logic
-  // Mobile (>6 items): grid-cols-2 (2 columns, 4 rows)
-  // Default (<=4): grid-cols-2.
-  // 5-6: grid-cols-2 md:grid-cols-3.
+  // Mobile:
+  // <= 4 items: 2 columns
+  // 5-6 items: 2 columns (3 rows max) - Fits okay
+  // 7-8 items: 3 columns (3 rows max) - Fits better than 2 columns (4 rows)
   const getGridColsClass = () => {
     const n = gridItems.length;
-    if (n <= 4) return 'grid-cols-2';
     if (n <= 6) return 'grid-cols-2 md:grid-cols-3';
-    // For 7-8 items:
-    // Mobile: grid-cols-2 (2 columns = 4 rows)
-    // Desktop: grid-cols-4 (4 columns = 2 rows)
-    return 'grid-cols-2 md:grid-cols-4';
+    return 'grid-cols-3 md:grid-cols-4';
   };
 
   return (

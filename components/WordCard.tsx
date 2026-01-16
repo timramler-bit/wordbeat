@@ -26,9 +26,10 @@ export const WordCard: React.FC<WordCardProps> = ({ item, isActive, showEmoji, h
     : `relative aspect-square rounded-2xl border-2 transition-all duration-100 ease-out overflow-hidden select-none p-1 ${activeClasses}`;
 
   // Responsive font sizing
+  // Scaled down slightly to support 3-column grid on mobile
   const textSize = isFlashcard
     ? 'text-4xl md:text-6xl'
-    : (item.text.length > 10 ? 'text-lg md:text-2xl' : (item.text.length > 6 ? 'text-2xl md:text-4xl' : 'text-3xl md:text-5xl'));
+    : (item.text.length > 8 ? 'text-base md:text-2xl' : (item.text.length > 5 ? 'text-xl md:text-3xl' : 'text-2xl md:text-5xl'));
 
   return (
     <div className={`${baseClasses} flex flex-col items-center justify-center cursor-pointer`} onClick={onClick}>
@@ -53,11 +54,11 @@ export const WordCard: React.FC<WordCardProps> = ({ item, isActive, showEmoji, h
         <>
           {showEmoji && item.emoji ? (
             <>
-              <div className={`${isFlashcard ? 'text-9xl' : 'text-6xl md:text-8xl'} transition-transform duration-100 ${isActive ? 'scale-125' : 'scale-100'}`}>
+              <div className={`${isFlashcard ? 'text-9xl' : 'text-5xl md:text-8xl'} transition-transform duration-100 ${isActive ? 'scale-125' : 'scale-100'}`}>
                 {item.emoji}
               </div>
               {!hideText && (
-                <div className={`absolute bottom-4 font-bold text-slate-400 ${isFlashcard ? 'text-3xl' : 'text-sm md:text-lg'} uppercase tracking-wider`}>
+                <div className={`absolute bottom-3 font-bold text-slate-400 ${isFlashcard ? 'text-3xl' : 'text-xs md:text-lg'} uppercase tracking-wider truncate max-w-full px-1`}>
                   {item.text}
                 </div>
               )}
